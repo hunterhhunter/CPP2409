@@ -12,4 +12,5 @@ int main() {
 
     cout << x << endl;                      // x 출력
     return 0;
+    
 }

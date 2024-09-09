@@ -11,4 +11,5 @@ int main() {
     s2 = "Good";            // 기존 Good가 존재하기 때문에 s2에
     b = (s1 == s2);         // "Good"의 포인터 저장 so. true, 1
     cout << b << endl;
+    
 }
