@@ -52,14 +52,20 @@ int main() {
 
         // 보드판 출력
         for (int i=0; i < SIZEOFBOARD; i++) {
-            cout << "|---|---|---|" << endl;
+            for (int f=0;f<SIZEOFBOARD;f++) {
+                cout << "|---";
+            }
+            cout << "|" << endl;
             cout << "|";
             for (int j=0; j<SIZEOFBOARD; j++) {
                 cout << " " << board[i][j] << " |";
             }
             cout << endl;
         }
-        cout << "|---|---|---|" << endl;
+        for (int f=0;f<SIZEOFBOARD;f++) {
+                cout << "|---";
+            }
+        cout << "|" << endl;
 
         // 빙고 체크
         // 1. 가로 체크
@@ -70,7 +76,7 @@ int main() {
                     check++;
             }
             // 가로로 빙고인 경우
-            if (check == 3) {
+            if (check == SIZEOFBOARD) {
                 if (currentPlayerStone == 'X') {
                     cout << "첫번째 플레이어(X)가 " << i+1 << "번째 가로 선에 모두 돌을 놓았습니다. 승리했습니다.";
                     return 0;
@@ -88,7 +94,7 @@ int main() {
                     check++;
             }
             // 세로로 빙고인 경우
-            if (check == 3) {
+            if (check == SIZEOFBOARD) {
                 if (currentPlayerStone == 'X') {
                     cout << "첫번째 플레이어(X)가 " << i+1 << "번째 세로 선에 모두 돌을 놓았습니다. 승리했습니다.";
                     return 0;
@@ -107,7 +113,7 @@ int main() {
             if (board[i][SIZEOFBOARD-1-i] == currentPlayerStone)
                 check2++;
         }
-        if (check == 3) {
+        if (check == SIZEOFBOARD) {
             if (currentPlayerStone == 'X') {
                 cout << "첫번째 플레이어(X)가 좌상단 -> 우하단 선에 모두 돌을 놓았습니다. 승리했습니다.";
                 return 0;
@@ -116,7 +122,7 @@ int main() {
                 return 0;
             }
         }
-        if (check2 == 3) {
+        if (check2 == SIZEOFBOARD) {
             if (currentPlayerStone == 'X') {
                 cout << "첫번째 플레이어(X)가 우상단 -> 좌하단 선에 모두 돌을 놓았습니다. 승리했습니다.";
                 return 0;
@@ -131,7 +137,7 @@ int main() {
             for (int j=0;j<SIZEOFBOARD;j++)
                 if (board[i][j] != ' ')
                     check++;
-        if (check == 9) {
+        if (check == SIZEOFBOARD*SIZEOFBOARD) {
             cout << "모든 칸이 다 찼습니다. 무승부로 게임을 종료합니다.";
             return 0;
         } else {
