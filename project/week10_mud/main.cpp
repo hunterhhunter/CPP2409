@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include "user.h"
+#include <vector>
 using namespace std;
 
 const int mapX = 5;
@@ -9,19 +10,20 @@ const int mapY = 5;
 
 // 사용자 정의 함수
 bool checkXY(int *user_x, int *user_y);
-void displayMap(int map[][mapX], int *user_x, int *user_y);
-bool checkState(int map[][mapX], int *user_x, int *user_y, User& user);
-bool move(int dx, int dy, int *user_x, int *user_y, User& user, int map[][mapX]);
-bool action(string action, int map[mapY][mapX], int *user_x, int *user_y, User& user);
+void displayMap(vector<vector<int>> map, int *user_x, int *user_y);
+bool checkState(vector<vector<int>> map, int *user_x, int *user_y, User& user);
+bool move(int dx, int dy, int *user_x, int *user_y, User& user, vector<vector<int>> map);
+bool action(string action, vector<vector<int>> map, int *user_x, int *user_y, User& user);
 
 // 메인  함수
 int main() {
 	// 0은 빈 공간, 1은 아이템, 2는 적, 3은 포션, 4는 목적지
-	int map[mapY][mapX] = { {0, 1, 2, 0, 4},
-					{1, 0, 0, 2, 0},
-					{0, 0, 0, 0, 0},
-					{0, 2, 3, 0, 0},
-					{3, 0, 0, 0, 2} };
+	vector<vector<int>> map;
+	map = { {0, 1, 2, 0, 4},
+			{1, 0, 0, 2, 0},
+			{0, 0, 0, 0, 0},
+			{0, 2, 3, 0, 0},
+			{3, 0, 0, 0, 2} };
 
 
 	// 유저의 위치를 저장할 변수
@@ -70,7 +72,7 @@ int main() {
 
 
 // 지도와 사용자 위치 출력하는 함수
-void displayMap(int map[][mapX], int *user_x, int *user_y) {
+void displayMap(vector<vector<int>> map, int *user_x, int *user_y) {
 	for (int i = 0; i < mapY; i++) {
 		for (int j = 0; j < mapX; j++) {
 			if (i == *user_y && j == *user_x) {
@@ -112,7 +114,7 @@ bool checkXY(int *user_x, int *user_y) {
 }
 
 // 유저 위치의 타일이 특수한 타일인지 확인하고 상호작용하는 함수
-bool checkState(int map[][mapX], int *user_x, int *user_y, User& user) {
+bool checkState(vector<vector<int>> map, int *user_x, int *user_y, User& user) {
 	switch (map[*user_y][*user_x])
 	{
 	case 1:
@@ -139,7 +141,7 @@ bool checkState(int map[][mapX], int *user_x, int *user_y, User& user) {
 	}
 }
 
-bool move(int dx, int dy, int *user_x, int *user_y, User& user, int map[][mapX]) {
+bool move(int dx, int dy, int *user_x, int *user_y, User& user, vector<vector<int>> map) {
 	// 이동만을 담당하는 함수 dx, dy만큼 검증하여 이동하는 함수
 	*user_x += dx;
 	*user_y += dy;
@@ -153,7 +155,7 @@ bool move(int dx, int dy, int *user_x, int *user_y, User& user, int map[][mapX])
 	return true;
 }
 
-bool action(string action, int map[][mapX], int *user_x, int *user_y, User& user) {
+bool action(string action, vector<vector<int>> map, int *user_x, int *user_y, User& user) {
 	// 상, 하, 좌, 우 이동과 지도 출력, 입력값 검증을 하는 함수
 	// 포인터들로 실질적 값의 변경이 가능
     if (action == "상") {
