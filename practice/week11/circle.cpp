@@ -25,7 +25,7 @@ int main() {
     p->SetRadius(30);
     // pConstObj->SetRadius(30);
     pConstPtr->SetRadius(30);
-    
+
     cout << "pRect->radius: " << p->GetRadius() << endl;
     cout << "pConstObj->radius: " << pConstObj->GetRadius() << endl;
     cout << "pConstPtr->radius: " << pConstPtr->GetRadius() << endl;
