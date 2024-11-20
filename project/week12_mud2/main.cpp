@@ -275,7 +275,7 @@ bool action(string action, vector<vector<int>> map, User *user, vector<pair<int,
 	}
 	else if (action == "정보")
 	{
-		cout << user << endl;
+		cout << *user << endl;
 	}
 	else
 	{

@@ -5,7 +5,7 @@ using namespace std;
 
 class User 
 {
-private:
+protected:
     int HP;      // 현재 체력
     int itemCnt; // 아이템 먹은 횟수 저장
     int X;
@@ -13,8 +13,13 @@ private:
 
 public:
     User();
-    friend ostream& operator<<(ostream& os, const User& u){
-        os<<"현재 HP는 "<< u.HP <<"이고, 먹은 아이템은 총" << u.itemCnt <<"개 입니다." << endl;
+    // 출력 내용을 정의하는 가상 함수
+    virtual string GetInfo() const {
+        return "현재 HP는 " + to_string(HP) + "이고, 먹은 아이템은 총 " + to_string(itemCnt) + "개 입니다.";
+    }
+
+    friend ostream& operator<<(ostream& os, const User& u) {
+        os << u.GetInfo() << endl;
         return os;
     }
     void IncreaseHP(int inc_hp);
