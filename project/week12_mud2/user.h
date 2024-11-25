@@ -13,6 +13,7 @@ protected:
 
 public:
     User();
+    ~User();
     // 출력 내용을 정의하는 가상 함수
     virtual string GetInfo() const {
         return "현재 HP는 " + to_string(HP) + "이고, 먹은 아이템은 총 " + to_string(itemCnt) + "개 입니다.";
